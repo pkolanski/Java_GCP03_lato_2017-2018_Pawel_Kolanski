@@ -7,7 +7,7 @@ public class Main
 {
     public static void main(String[] args) throws IOException, CrawlerException, InterruptedException {
         Crawler crawler=new Crawler();
-        crawler.setAddress("D:/Projekty/Projekty Java/WebCrawler/students.txt");
+        crawler.setAddress("students.txt");
         crawler.addIterationStartedListener(iteration -> System.out.println("Iteration " +iteration +" started"));
         crawler.addIterationFinishedListener(iteration -> System.out.println("Iteration "+iteration +" finished"));
         crawler.addStudentAddedListener((status)->{
