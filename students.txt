@@ -6,3 +6,4 @@
 4.0;Jan6;Kowalski6;21
 5.0;Jan56;Kowalski88;26
 5.0;Jan56;Kowalski88;27
+3.0;Jan412;Kowalski4;22
