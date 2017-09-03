@@ -6,18 +6,23 @@ import java.io.IOException;
 public class Main
 {
     public static void main(String[] args) throws IOException, CrawlerException, InterruptedException {
+        final Logger[] loggers= new Logger[]
+                {
+                  new ConsoleLogger(),
+                  //new MailLogger()
+                };
         Crawler crawler=new Crawler();
         crawler.setAddress("students.txt");
         crawler.addIterationStartedListener(iteration -> System.out.println("Iteration " +iteration +" started"));
         crawler.addIterationFinishedListener(iteration -> System.out.println("Iteration "+iteration +" finished"));
         crawler.addStudentAddedListener((status)->{
-            for (Logger logger : crawler.loggers) {
+            for (Logger logger : loggers) {
                 logger.log("ADDED", status);
             }
         });
 
         crawler.addStudentRemovedListener((status)->{
-            for (Logger logger : crawler.loggers) {
+            for (Logger logger : loggers) {
                 logger.log("REMOVED", status);
             }
         });

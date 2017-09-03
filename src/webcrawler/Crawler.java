@@ -24,11 +24,6 @@ public class Crawler
     private List<IterationListener> iterationFinishedListeners = new ArrayList<>();
     private List<Student> studentsList;
     private List<Student> newStudentList;
-    public final Logger[] loggers = new Logger[]
-            {
-                    new MailLogger(),
-                    new ConsoleLogger()
-            };
     Crawler()
     {
         address=null;
@@ -111,19 +106,12 @@ public class Crawler
         boolean flag1=false;
         boolean flag2=false;
         List<Student> studentsToRemove = new ArrayList<Student>();
-        studentsList=StudentsParser.parse(new File(address));
         while(true)
         {
             iteration++;
             for(IterationListener el:iterationStartedListeners){el.handle(iteration);}
             this.newStudentList=StudentsParser.parse(new File(address));
-            List<Student> students = this.extractStudents(OrderMode.MARK);
-            System.out.println("Ordered by mark:");
-            for (Student student : students) {
-                student.show();
-            }
-            System.out.println("Age <" + this.extractAge(ExtremumMode.MIN) + ", " + this.extractAge(ExtremumMode.MAX) + ">");
-            System.out.println("Mark <" + this.extractMark(ExtremumMode.MIN) + ", " + this.extractMark(ExtremumMode.MAX) + ">");
+
             for(Student student:studentsList){
                 if(studentsList.contains(student)&&!newStudentList.contains(student))
                 {
@@ -148,6 +136,13 @@ public class Crawler
             }
             studentsToRemove.clear();
             newStudentList.clear();
+            List<Student> students = this.extractStudents(OrderMode.MARK);
+            System.out.println("Ordered by mark:");
+            for (Student student : students) {
+                student.show();
+            }
+            System.out.println("Age <" + this.extractAge(ExtremumMode.MIN) + ", " + this.extractAge(ExtremumMode.MAX) + ">");
+            System.out.println("Mark <" + this.extractMark(ExtremumMode.MIN) + ", " + this.extractMark(ExtremumMode.MAX) + ">");
             if(!flag1 && !flag2)
             {
                 System.out.println("List was not modified.");
