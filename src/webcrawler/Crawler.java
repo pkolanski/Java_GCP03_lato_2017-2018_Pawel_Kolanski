@@ -24,6 +24,8 @@ public class Crawler
     private List<IterationListener> iterationFinishedListeners = new ArrayList<>();
     private List<Student> studentsList;
     private List<Student> newStudentList;
+    private boolean runFlag;
+
     Crawler()
     {
         address=null;
@@ -151,5 +153,9 @@ public class Crawler
             flag1=flag2=false;
             Thread.sleep(10000);
         }
+    }
+    public synchronized void postCancel()
+    {
+        runFlag=false;
     }
 }
