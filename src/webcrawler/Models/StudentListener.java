@@ -1,8 +1,8 @@
 package webcrawler.Models;
 
-import webcrawler.Models.Student;
+import java.io.IOException;
 
 @FunctionalInterface
 public interface StudentListener {
-    void handle(Student student);
+    void handle(Student student) throws IOException;
 }

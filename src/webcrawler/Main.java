@@ -14,12 +14,17 @@ public class Main
                 {
                   new ConsoleLogger(),
                   //new MailLogger()
-                        new GUILogger()
+                        new GUILogger(),
+                        new TextLogger("TextLog"),
+                        new SerializedLogger(),
+                        new BinaryLogger(),
+                        new CompressedLogger()
                 };
         Crawler crawler=new Crawler();
         crawler.setAddress("students.txt");
         crawler.addIterationStartedListener(iteration -> System.out.println("Iteration " +iteration +" started"));
         crawler.addIterationFinishedListener(iteration -> System.out.println("Iteration "+iteration +" finished"));
+
         crawler.addStudentAddedListener((status)->{
             for (Logger logger : loggers) {
                 logger.log("ADDED", status);

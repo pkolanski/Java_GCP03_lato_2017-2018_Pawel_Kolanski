@@ -2,10 +2,10 @@ package webcrawler.Models;
 
 public class Student
 {
-    private double mark;
-    private String firstName;
-    private String lastName;
-    private int age;
+    protected double mark;
+    protected String firstName;
+    protected String lastName;
+    protected int age;
 
     public double getMark()
     {
@@ -106,5 +106,15 @@ public class Student
     }
     public void show(){
         System.out.println(this.getMark() + " " + this.getFirstName() + " " + this.getLastName() + " " + this.getAge());
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "mark=" + mark +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
